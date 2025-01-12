@@ -3,19 +3,21 @@ export const SEARCH_REST_API =
 
 export const GET_RESTAURANT_LIST_API =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.9690&lng=72.8205&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
-export const BASE_IMAGE_URL =
-  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
+
+export const IMG_CDN_URL = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/`;
 
 // Swiggy API to get Restaurant data using foodfire server
 export const GET_RESTUARANT_INFO_API =
-  "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING";
+  "https://foodfire.onrender.com/api/menu?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&&submitAction=ENTER&restaurantId=";
 
 // Swiggy API to get Restaurant Menu data using foodfire server
 export const RESTUARANT_MENU =
   "https://foodfire.onrender.com/api/menu?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&&submitAction=ENTER&restaurantId=";
-
+// menu?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&&submitAction=ENTER&restaurantId=";
+export const RESTAURANT_MENU_INFO =
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.0759837&lng=72.8776559&restaurantId=98251";
 export const RESTAURANT_TYPE_KEY =
-  "type.googleapis.com/swiggy.presentation.food.v2.Restaurant";
+  "type.googleapis.com/swiggy.presentation.food.v2.Restaurant/menu?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&&submitAction=ENTER&restaurantId=";
 export const MENU_ITEM_TYPE_KEY =
   "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
 

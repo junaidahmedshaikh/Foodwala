@@ -1,26 +1,28 @@
 import { useState, useContext } from "react";
 import Banner from "../assets/Banner.svg";
 import { useGetCoordinate } from "../utils/useGetCoordinate";
-import userContext from "../Context/userContext";
+import { Link } from "react-router-dom";
+import UserContext from "../Context/userContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [userData, setUserData] = useState(""); // Address input
-  const [coordinates, setCoordinates] = useState(null); // Local state for coordinates
+  const [coordinates, setCoordinates] = useState({}); // Local state for coordinates
   const { handleGetCoordinates } = useGetCoordinate();
-  const { userInfo, setUserInfo } = useContext(userContext);
-
+  const { userCoordinate, userAddress, setUserAddress } =
+    useContext(UserContext);
+  const { navigate } = useNavigate();
+  // console.log(userAddress);
   // Function to handle the search button click
-  const handleSearch = async (e) => {
-    e.preventDefault();
-
+  const handleSearch = async () => {
     // Fetch coordinates for the given userData
     const result = await handleGetCoordinates(userData.trim());
     if (result) {
       setCoordinates(result);
-      console.log(userInfo); // Update local state with fetched coordinates
     }
   };
 
+  // console.log();
   return (
     <div className="text-white">
       {/* Home banner */}
@@ -30,6 +32,7 @@ export default function Home() {
           {/* Main Title */}
           <h1 className="text-white text-4xl font-headingFont">
             Discover restaurants and more near you.
+            <span>{}</span>
           </h1>
 
           {/* Search Bar */}
@@ -43,12 +46,20 @@ export default function Home() {
                   value={userData}
                   onChange={(e) => setUserData(e.target.value)} // Update userData state on input change
                 />
-                <button
-                  type="submit"
-                  className="text-white absolute end-2.5 bottom-2.5 bg-red hover:bg-red-800 focus:ring-4 focus:outline-none font-medium rounded-full text-sm px-4 py-2"
-                >
-                  Search
-                </button>
+                <Link to={"/FoodCatalog"}>
+                  {" "}
+                  <button
+                    onClick={() => {
+                      handleSearch(); // Execute your search logic
+                      setUserAddress(userData);
+                      navigate("/FoodCatalog"); // Navigate to the desired route
+                    }}
+                    type="button"
+                    className="text-white absolute end-2.5 bottom-2.5 bg-red hover:bg-red-800 focus:ring-4 focus:outline-none font-medium rounded-full text-sm px-4 py-2"
+                  >
+                    Search
+                  </button>
+                </Link>
               </div>
             </form>
           </div>

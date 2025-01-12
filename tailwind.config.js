@@ -7,6 +7,12 @@ export default {
       red: "#f54323",
       white: "#FFFFFF",
       black: "#000000",
+      gray: "#d6d8db",
+      grayDark: "#a9adb0",
+      green: "#008000",
+      fontGray: "#808080",
+      fontDarkGray: "#36454F",
+      whiteSmoke: "#F5F5F5",
     },
     fontSize: {
       sm: "0.8rem",

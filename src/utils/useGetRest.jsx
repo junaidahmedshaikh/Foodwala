@@ -1,13 +1,30 @@
 import React, { useEffect, useState } from "react";
+import { GET_RESTAURANT_LIST_API } from "../constant";
 
-export default async function useGetRest() {
+export default function useGetRest() {
+  // console.log(data);
   const [RestList, setRestList] = useState();
-  const GET_RESTUARANT_INFO_API =
-    "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING";
-  const handleRestaurantList = async (lat, lon) => {
-    // const fetchRestList = await fetch();
-    console.log(lat, lon, " useGetHok");
-  };
+  useEffect(() => {
+    fetchRestList();
+  }, []);
 
-  return handleRestaurantList;
+  async function fetchRestList() {
+    const rawRestListData = await fetch(GET_RESTAURANT_LIST_API);
+    const restData = await rawRestListData.json();
+
+    function checkDataFunction() {
+      for (let i = 0; i <= restData?.data?.cards.length; i++) {
+        let checkData = restData?.data?.cards;
+        if (checkData !== undefined) {
+          return checkData;
+        }
+      }
+    }
+    const restList = checkDataFunction();
+    setRestList(
+      restList[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    console.log();
+  }
+  return RestList;
 }

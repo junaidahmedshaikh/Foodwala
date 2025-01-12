@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
-import userContext from "../Context/userContext";
+import UserContext from "../Context/userContext";
 
 export const useGetCoordinate = () => {
   const [error, setError] = useState("");
-  const { setUserInfo } = useContext(userContext);
+  const { setUserCoordinate } = useContext(UserContext);
 
+  // console.log("GETCOORDING: ");
   // Function to fetch coordinates
   const handleGetCoordinates = async (userData) => {
     if (!userData || userData.trim() === "") {
@@ -24,7 +25,7 @@ export const useGetCoordinate = () => {
         const { lat, lon } = data[0];
         setError("");
         // Update context
-        setUserInfo({ lat, lon });
+        setUserCoordinate({ lat, lon });
         // Return the coordinates
         return { lat, lon };
       } else {
