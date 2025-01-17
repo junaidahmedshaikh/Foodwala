@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem, updateItem, removeItem } from "../../Store/Slices/cartSlice";
 export default function ItemCard(item) {
   const [itemQuantity, setitemQuantity] = useState(1);
-  const [itemPrice, setitemPrice] = useState(item?.price);
+  const [itemPrice, setitemPrice] = useState(item?.price || item.defaultPrice);
   const items = useSelector((store) => store.cart.items);
 
   const dispatch = useDispatch();
@@ -18,6 +18,11 @@ export default function ItemCard(item) {
     dispatch(
       updateItem({ id: item.id, quantity: itemQuantity, price: itemPrice })
     );
+  };
+  const handleUpdateItem = () => {
+    setitemQuantity(itemQuantity - 1);
+
+    dispatch(updateItem(item));
   };
 
   return (
@@ -34,7 +39,8 @@ export default function ItemCard(item) {
 
         <p className="text-fontDarkGray font-semibold flex items-center align-middle">
           <IndianRupee size={13} />
-          {(item.price / 100) * itemQuantity}
+
+          {(item.price || item.defaultPrice / 100) * itemQuantity}
         </p>
       </div>
 
@@ -49,7 +55,7 @@ export default function ItemCard(item) {
             </button>
           ) : (
             <button
-              onClick={handleRemoveItem}
+              onClick={handleUpdateItem}
               className="p-1 hover:scale-110 rounded ml-2"
             >
               <Minus className="w-4 h-4" strokeWidth={3} />

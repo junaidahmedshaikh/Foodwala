@@ -1,5 +1,6 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import { act } from "react";
+import { createSlice } from "@reduxjs/toolkit";
+// import { act } from "react";
+import { current } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -9,37 +10,35 @@ const cartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-      // console.log("state.items ", state.items);
+      const itemPrice =
+        action.payload.item.price || action.payload.item.defaultPrice || 0;
+      const itemQuantity = action.payload.item.quantity || 1;
 
-      // const existingItem = state.items.find((ProxyItem) => {
-      // const item = current(ProxyItem?.item) || current(ProxyItem);
-      //   item.id === action?.payload?.id;
-      // });
+      state.items.push(action.payload);
 
-      // if (existingItem) {
-      //   console.log("Item Already Exists:", current(existingItem)); // Debugging log
-      // } else {
-      //   console.log("Added Successfully:", action.payload);
-      // }
-      state.totalPrice = action?.payload?.item?.price;
-      // console.log(item);
-      state.items.push(action.payload); // Add new item
+      state.totalPrice += itemPrice * itemQuantity;
     },
     removeItem: (state, action) => {
-      state.items.pop();
-      state.totalPrice -= action?.payload?.price;
+      const itemIdToRemove = action.payload.id;
+
+      const updatedItems = state.items.filter(
+        (item) => item.item.id !== itemIdToRemove
+      );
+
+      const updatedTotalPrice = updatedItems.reduce((total, item) => {
+        const itemPrice = item.item.price || item.item.defaultPrice || 0;
+        return total + itemPrice * (item.item.quantity || 1);
+      }, 0);
+
+      state.items = updatedItems;
+      state.totalPrice = updatedTotalPrice;
+
+      // console.log("Item removed. Updated state:", state);
     },
     updateItem: (state, action) => {
-      const { id, quantity, price } = action.payload;
+      const { id, quantity, price, defaultPrice } = action.payload;
+      state.totalPrice = (state.totalPrice + price) | defaultPrice;
 
-      // const item = current(state?.items);
-      // const totalItemPrice = item.reduce((sum, acc) => {
-      //   // console.log("acc: ", );
-      //   return (sum += acc.item.price * quantity);
-      // }, 0);
-      // console.log("Brfore: ", state.totalPrice);
-      state.totalPrice = state.totalPrice + price;
-      // console.log(state?.totalPrice);
       // Logic 1
       // const proxyItem = state.items.find((item) => {
       //   // console.log(item?.item?.id === id);

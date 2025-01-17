@@ -10,7 +10,9 @@
 //     address
 //   )}&countrycodes=in&limit=1`;
 
-//   const handleGetCoordinates = async () => {
+//   const handleGetCoordinates = async (userData) => {
+//
+userData;
 //     if (!address) {
 //       setError("Please enter an address.");
 //       return;
@@ -21,12 +23,14 @@
 //       const response = await fetch(geocodeUrl);
 //       const data = await response.json(); // Ensure you parse the JSON response
 
-//       console.log(data); // Check the response structure
-
 //       if (data.length > 0) {
 //         const { lat, lon } = data[0]; // Access lat and lon directly
 //         setLatitude(lat);
 //         setLongitude(lon);
+//
+"lon: ", lon; // Check the response structure
+//
+"lat: ", lat; // Check the response structure
 //         setError(""); // Clear error if successful
 //       } else {
 //         setError("Unable to retrieve coordinates for the given address.");

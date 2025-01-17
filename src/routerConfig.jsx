@@ -7,6 +7,8 @@ import ErrorPage from "./Pages/ErrorPage";
 import RestProfile from "./Pages/RestProfile.jsx";
 import Cart from "./Pages/Cart.jsx";
 import Checkout from "./Pages/Checkout.jsx";
+import Asap from "./Components/Asap.jsx";
+import RestExplore from "./RestExplore.jsx";
 
 export const routerConfiguration = createBrowserRouter([
   {
@@ -20,6 +22,8 @@ export const routerConfiguration = createBrowserRouter([
       { path: "/restaurants/:resId", element: <RestProfile /> },
       { path: "/cart", element: <Cart /> },
       { path: "/checkout", element: <Checkout /> },
+      { path: "/asap", element: <Asap /> },
+      { path: "/explore/:collection/:id", element: <RestExplore /> },
     ],
   },
 ]);

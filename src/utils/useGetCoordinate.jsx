@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
-import UserContext from "../Context/userContext";
+import { useDispatch } from "react-redux";
 
 export const useGetCoordinate = () => {
   const [error, setError] = useState("");
-  const { setUserCoordinate } = useContext(UserContext);
 
-  // console.log("GETCOORDING: ");
   // Function to fetch coordinates
   const handleGetCoordinates = async (userData) => {
+    //
+    userData;
     if (!userData || userData.trim() === "") {
       setError("Please enter a valid address.");
       return null;
@@ -24,8 +24,11 @@ export const useGetCoordinate = () => {
       if (data.length > 0) {
         const { lat, lon } = data[0];
         setError("");
+        //
+        "lat, lon: ", lat, lon;
         // Update context
-        setUserCoordinate({ lat, lon });
+        // dispatch(addUser({ lat, lon }));
+
         // Return the coordinates
         return { lat, lon };
       } else {
@@ -34,7 +37,7 @@ export const useGetCoordinate = () => {
       }
     } catch (error) {
       setError("An error occurred while fetching the coordinates.");
-      console.error(error);
+      // console.error(error);
       return null;
     }
   };

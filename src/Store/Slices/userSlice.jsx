@@ -4,14 +4,17 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     userDetail: {},
+    userCod: {},
   },
   reducers: {
-    addUser(state, action) {
-      state.userDetail.push(action.payload);
-      console.log("Add User Succesfully");
+    addUserCod(state, action) {
+      // state.userDetail.push(action.payload);
+      state.userCod = action.payload;
+      //
+      "Add User Succesfully", action.payload;
     },
   },
 });
 
-export const { addUser } = userSlice.actions;
-export default userSlice;
+export const { addUserCod } = userSlice.actions;
+export default userSlice.reducer;

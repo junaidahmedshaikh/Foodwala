@@ -9,9 +9,11 @@ export function useFilterRest({ RestList, userSearchData }) {
   //   }, [userSearchData]);
 
   const handleFilterRest = () => {
-    console.log("Filter Function is working");
-    console.log("Filter Hook: ", userSearchData);
-    console.log("Filter Hook: ", RestList);
+    ("Filter Function is working");
+
+    "Filter Hook: ", userSearchData;
+
+    "Filter Hook: ", RestList;
   };
   return handleFilterRest;
 }

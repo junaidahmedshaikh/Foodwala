@@ -1,19 +1,34 @@
 import { useRef, useState } from "react";
-import { Menu, Search, ShoppingCart, MapPin, User } from "lucide-react";
+import {
+  Menu,
+  Search,
+  ShoppingCart,
+  MapPin,
+  User,
+  Turtle,
+  Utensils,
+} from "lucide-react";
 import CartModel from "../AddToCard/CartModel";
 import { useSelector } from "react-redux";
-
-export function Header({ onSearch }) {
-  const [toggleSidebar, setToggleSidebar] = useState();
+import SignUpModel from "../../Authentication/SignUpModel";
+import SignInModel from "../../Authentication/SignInModel";
+import useSearchRest from "../../utils/useSearchRest";
+import { useNavigate } from "react-router-dom";
+export function Header({ onSearch, toggleSidebar }) {
   const [modelShow, setModelShow] = useState(false);
+  const [showSignUpModel, setShowSignUpModel] = useState(false);
+  const [showSignInModel, setShowSignInModel] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [isValideUser, setIsValideUser] = useState(true);
   const [localSearchData, setLocalSearchData] = useState();
-  // console.log(setUserSearchData);
-  const handleSearch = () => {
-    onSearch(localSearchData);
-  };
-
+  // const { searchRestFunction, searchList } = useSearchRest();
   const modelRef = useRef();
   const cartItem = useSelector((store) => store.cart.items);
+  // console.log("searchList: ", searchList?.data?.cards[1]?.groupedCard);
+  const handleSearch = (userSearchData) => {
+    onSearch(localSearchData);
+    // searchRestFunction(userSearchData);
+  };
   return (
     <>
       <header
@@ -30,7 +45,11 @@ export function Header({ onSearch }) {
             >
               <Menu className="w-6 h-6" />
             </button>
-            <span className="text-2xl font-bold text-red">Foodwala</span>
+            <span className="text-2xl font-bold flex text-red items-center">
+              {" "}
+              <Utensils size={20} />
+              <span className="text-2xl  font-bold">Foodwala</span>
+            </span>
           </div>
 
           {/* Center section */}
@@ -44,7 +63,7 @@ export function Header({ onSearch }) {
                 onChange={(e) => setLocalSearchData(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    handleSearch(); // Trigger search on Enter key press
+                    handleSearch(e.target.value); // Trigger search on Enter key press
                   }
                 }}
               />
@@ -62,7 +81,7 @@ export function Header({ onSearch }) {
               onClick={() => {
                 setModelShow(true);
               }}
-              className="relative p-2 hover:bg-gray-100 rounded-full"
+              className="relative p-2 hover:scale-105 transition-transform hover:bg-gray-100 rounded-full"
             >
               <ShoppingCart className="w-6 h-6" />
               <span className="absolute -top-1 -right-1 bg-red text-white text-xs font-semibold w-5 h-5 rounded-full flex items-center justify-center">
@@ -70,9 +89,31 @@ export function Header({ onSearch }) {
               </span>
             </button>
 
-            <button className="p-2 hover:bg-gray-100 rounded-full">
-              <User className="w-6 h-6" />
-            </button>
+            <div className="flex gap-2 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+              {isValideUser ? (
+                <>
+                  {" "}
+                  <button
+                    type="button"
+                    className="text-black hover:bg-gray  hover:scale-105 transition-transform rounded-full font-bold text-sm px-4 py-2 text-center "
+                    onClick={() => setShowSignInModel(true)}
+                  >
+                    Sign in
+                  </button>
+                  <button
+                    type="button"
+                    className="bg-gray text-black  hover:scale-105 transition-transform rounded-full font-bold text-sm px-4 py-2 text-center "
+                    onClick={() => setShowSignUpModel(true)}
+                  >
+                    Sign Up
+                  </button>
+                </>
+              ) : (
+                <button className="p-2 hover:bg-gray-100 rounded-full">
+                  <User className="w-6 h-6" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </header>
@@ -83,6 +124,27 @@ export function Header({ onSearch }) {
           closeModel={() => setModelShow(false)}
         />
       )}
+      <div className="flex justify-center align-middle">
+        {/* Sign Up Model Compo */}
+
+        {showSignUpModel && (
+          <SignUpModel
+            isOpen={showSignUpModel}
+            closeModel={() => {
+              setShowSignUpModel(false);
+            }}
+          />
+        )}
+        {/* Sign In Model Compo */}
+        {showSignInModel && (
+          <SignInModel
+            isOpen={showSignInModel}
+            closeModel={() => {
+              setShowSignInModel(false);
+            }}
+          />
+        )}
+      </div>
     </>
   );
 }

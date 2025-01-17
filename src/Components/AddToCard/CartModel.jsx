@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ItemCard from "./ItemCard";
 import { X, IndianRupee } from "lucide-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import store from "../../Store/store";
-
+import { handleCloseModelRef } from "../../utils/Helper";
 // import useBillDetails from "../../utils/useBillDetails";
 export default function CartModel({ closeModel }) {
   const [totalItemPrice, setTotalItemPrice] = useState();
+  const modelRef = useRef(null);
   // const totalItemPrice = useBillDetails();
   const items = useSelector((store) => store?.cart?.items);
   const totalItem = useSelector((store) => store?.cart?.totalPrice / 100);
@@ -15,12 +16,23 @@ export default function CartModel({ closeModel }) {
   useEffect(() => {
     setTotalItemPrice(totalItem);
   }, [totalItem]);
-  console.log(totalItem);
+  // console.log(items);
+
+  // const closeCartModel = (modelRefCart, eTarget, closeModelCart) => {
+  //   // console.log("modelRefCart.current: ", modelRefCart.current);
+  //   // console.log("eTarget: ", eTarget);
+  //   if (modelRefCart.current === eTarget) {
+  //     //
+  //     modelRefCart.current === eTarget.target;
+  //     closeModel();
+  //   }
+  // };
   return (
     <div
-      //   ref={modelRef}
-      //   onClick={refFunction}
-      key={Math.random * 123}
+      ref={modelRef}
+      // onClick={(e) => {
+      //   closeCartModel(modelRef, e.target, closeModel);
+      // }}
       className="container fixed top-16 right-1 z-50 mx-auto p-4 max-w-96 bg-white rounded-lg shadow-lg"
     >
       <div className="mb-8">
@@ -39,9 +51,20 @@ export default function CartModel({ closeModel }) {
         {/* Product Cart here */}
         {/* {} */}
         {items.length === 0 ? (
-          <div>
-            <h1>Your cart is empty</h1>
-            <span>You can go to home page to view more restaurants</span>
+          <div className="flex justify-center align-middle flex-col py-16">
+            <div className="flex justify-center align-middle">
+              {" "}
+              <h1 className="bg-red text-white text-base font-semibold py-2 px-4 border rounded-full">
+                {" "}
+                Your cart is empty
+              </h1>
+            </div>
+            <div className="flex justify-center align-middle">
+              <span className="text-sm font-semibold">
+                {" "}
+                You can go to home page to view more restaurants
+              </span>
+            </div>
           </div>
         ) : (
           items.map((item) => {
@@ -63,7 +86,7 @@ export default function CartModel({ closeModel }) {
           </div>
           <div className="flex justify-between mb-2">
             <span className="text-fontDarkGray font-semibold">
-              Handling Fee
+              Plathform Fee
             </span>
             <span className="text-fontDarkGray font-semibold flex justify-center items-center align-middle">
               <IndianRupee size={13} />
@@ -94,6 +117,7 @@ export default function CartModel({ closeModel }) {
       <button
         onClick={() => {
           navigator("/checkout");
+          closeModel();
         }}
         className="w-full bg-red text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300 flex items-center justify-center"
       >

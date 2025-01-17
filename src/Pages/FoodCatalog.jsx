@@ -4,7 +4,7 @@ import RestCard from "../Components/Cards/RestCard";
 import RestaurantListSkeleton from "../Shimmer/RestaurantListSkeleton";
 import FilterBar from "../Components/Layout/FilterBar";
 import { Link, useOutletContext } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 export default function FoodCatalog() {
   const [RestList, setRestList] = useState([]);
   const RestaurantList = useGetRest();
@@ -14,6 +14,7 @@ export default function FoodCatalog() {
   useEffect(() => {
     setRestList(RestaurantList);
   }, [RestaurantList]);
+
   // Filter restaurants based on the search term
   const filteredRestaurants = (RestList || []).filter((restaurant) => {
     if (!userSearchData || typeof userSearchData !== "string") {
@@ -28,7 +29,8 @@ export default function FoodCatalog() {
 
   // Render Compo on click
   const renderComponent = (param) => {
-    console.log(param);
+    //
+    param;
     switch (param) {
       case "Dishes":
         return <h1>Dishes</h1>;
@@ -36,7 +38,8 @@ export default function FoodCatalog() {
       default:
         return RestList || RestList?.length > 0 ? (
           displayList.map((data) => {
-            // console.log(data.info);
+            //
+            data.info;
             return (
               <Link to={"/restaurants/" + data?.info?.id} key={data?.info?.id}>
                 <RestCard {...data?.info} />

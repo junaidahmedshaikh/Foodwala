@@ -7,9 +7,11 @@ import { addItem } from "../../Store/Slices/cartSlice";
 export default function MenuItem(item) {
   const dispatch = useDispatch();
   const handleAddItemAction = () => {
-    // console.log("Med: ", item);
+    //
+    "Med: ", item;
     dispatch(addItem(item));
   };
+  // console.log();
   return (
     <>
       <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4 p-4 hover:bg-Dark-50 rounded-lg transition-colors">
@@ -29,9 +31,7 @@ export default function MenuItem(item) {
           <div className="mt-2 flex items-center justify-between">
             <span className="text-fontDarkGray font-semibold flex justify-center items-center align-middle">
               <IndianRupee size={13} />
-              {item.item.price !== undefined
-                ? Number(item.item.price || 10) / 100
-                : Number(item.item.finalPrice || 10000) / 100}
+              {Math.round((item.item.price || item.item.defaultPrice) / 100)}
             </span>
             <button
               onClick={handleAddItemAction}

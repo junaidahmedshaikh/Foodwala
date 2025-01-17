@@ -16,12 +16,11 @@ function App() {
   useEffect(() => {
     const sidebarHandle = sidebarHandleFunction(location.pathname);
     setSidebarVisible(sidebarHandle);
-    // console.log(isSidebarVisible);
   }, [location]);
-  // console.log();
+
   return (
     <Provider store={store}>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen">
         {!isSidebarVisible ? (
           <>
             <Header
@@ -34,7 +33,7 @@ function App() {
           <Navbar />
         )}
 
-        <div className={!isSidebarVisible ? "lg:pl-64" : "lg:pl-0"}>
+        <div className={` ${!isSidebarVisible ? "lg:pl-64" : "lg:pl-0"}`}>
           <main className="max-w-7xl mx-auto">
             <Outlet context={{ userSearchData }} />
           </main>

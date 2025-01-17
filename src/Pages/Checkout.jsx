@@ -14,7 +14,8 @@ export function Checkout() {
     cvv: "",
   });
   const allItem = useSelector((store) => store.cart.items);
-  console.log("allItem: ", allItem);
+
+  "allItem: ", allItem;
   const [paymentMethod, setPaymentMethod] = useState("credit");
 
   const handleInputChange = (e) => {
@@ -25,7 +26,8 @@ export function Checkout() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log("Form submitted:", formData);
+
+    "Form submitted:", formData;
   };
 
   //   const total = orderItems.reduce(

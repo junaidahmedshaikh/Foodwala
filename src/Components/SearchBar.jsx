@@ -1,7 +1,6 @@
 import React from "react";
 
 function SearchBar(userInput) {
-  console.log("User Input: ", userInput);
   return (
     <div className="w-full max-w-sm min-w-[200px]">
       <div className="relative flex items-center">

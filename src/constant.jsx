@@ -1,3 +1,12 @@
+import {
+  Pizza,
+  Torus,
+  Coffee,
+  IceCream,
+  Soup,
+  Salad,
+  Cake,
+} from "lucide-react";
 export const SEARCH_REST_API =
   "https://www.swiggy.com/dapi/restaurants/search/suggest?lat=19.0759837&lng=72.8776559&str=pizza&trackingId=undefined&includeIMItem=true";
 
@@ -21,6 +30,11 @@ export const RESTAURANT_TYPE_KEY =
 export const MENU_ITEM_TYPE_KEY =
   "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
 
+export const SEARCH_FOOD_OPTION_HEADING_INFO_TYPE_KEY =
+  "type.googleapis.com/swiggy.gandalf.widgets.v2.CollectionMasthead";
+export const SEARCH_FOOD_OPTION_TYPE_KEY =
+  "type.googleapis.com/swiggy.presentation.food.v2.Restaurant";
+
 export const SEARCH_API = `https://www.swiggy.com/dapi/restaurants/search/v3?lat=19.0748&lng=72.8856&str=Chinese&trackingId=17a2c435-997a-67cb-23fa-2d98fb42d55f&submitAction=ENTER&queryUniqueId=93253894-93dd-bb48-8202-4e6ca05111dd`;
 
 export const CHINESE_SEARCH_API =
@@ -30,3 +44,53 @@ export const CHINESE_SEARCH_API =
 
 export const SORT_RESTAURANT_LIST = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0748&lng=72.8856&collection=83636&tags=layout_CCS_Chinese&sortBy=&filters=&type=rcv2&offset=0&page_type=null`;
 // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&collection=83631&tags=layout_CCS_Pizza&sortBy=&filters=&type=rcv2&offset=0&page_type=null";
+
+export const foodItems = [
+  {
+    name: "Pizza",
+    collection: 83631,
+    searchVal: "Pizza",
+    icon: Pizza,
+    color: "text-red", // Custom color
+    bgColor: "bg-redBackground", // Custom background color
+  },
+  {
+    name: "South Indian",
+    searchVal: "SouthIndian",
+    collection: 83634,
+    icon: Torus,
+    color: "text-amber", // Custom color
+    bgColor: "bg-amberBackground", // Custom background color
+  },
+  {
+    name: "Coffee",
+    searchVal: "Coffee",
+    icon: Coffee,
+    color: "text-brown", // Custom color
+    bgColor: "bg-amberLightBackground", // Custom background color
+  },
+  {
+    name: "Ice Cream",
+    collection: 83640,
+    searchVal: "Ice_Cream",
+    icon: IceCream,
+    color: "text-pink", // Custom color
+    bgColor: "bg-pinkBackground", // Custom background color
+  },
+  {
+    name: "Chinese",
+    searchVal: "Chinese",
+    collection: 83636,
+    icon: Soup,
+    color: "text-orange", // Custom color
+    bgColor: "bg-orangeBackground", // Custom background color
+  },
+  {
+    name: "Salad",
+    searchVal: "Salad",
+    collection: 83636,
+    icon: Salad,
+    color: "text-green", // Custom color
+    bgColor: "bg-greenBackground", // Custom background color
+  },
+];

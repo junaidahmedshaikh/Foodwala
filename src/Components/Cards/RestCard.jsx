@@ -11,7 +11,6 @@ export default function RestCard({
   name,
   sla,
 }) {
-  // console.log();
   let deliveryFee = 0;
   let rating = 4;
   let promotion = aggregatedDiscountInfoV3?.header;

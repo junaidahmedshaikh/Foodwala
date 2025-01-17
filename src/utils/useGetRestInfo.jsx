@@ -21,7 +21,8 @@ export default function useGetRestInfo(resId) {
         const restJsonData = await response.json();
         const restaurantInformation =
           restJsonData?.data?.cards[2]?.card?.card?.info;
-        // console.log(restaurantInformation);
+
+        restaurantInformation;
 
         // Restaurant Menu List
         const restaurantMenuList =
@@ -39,7 +40,8 @@ export default function useGetRestInfo(resId) {
         setRestMenuList(restaurantMenuList);
       } catch (err) {
         setError(err.message);
-        console.error("Error fetching restaurant info:", err);
+
+        "Error fetching restaurant info:", err;
       }
     }
     fetchRestaurantInfo();

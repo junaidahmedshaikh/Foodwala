@@ -4,7 +4,8 @@ const filters = ["All", "Restaurants", "Dishes", "Over 4+ ★"];
 export default function FilterBar({ onFilterRest }) {
   const handleFilterClick = (param) => {
     onFilterRest(param);
-    console.log(param);
+
+    param;
   };
   return (
     <div className="border-b border-gray bg-white">

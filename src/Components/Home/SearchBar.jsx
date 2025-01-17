@@ -40,7 +40,8 @@ export default function SearchBar({ sendDataToParent }) {
           placeholder="Enter Delivery Address"
           required
           onChange={(e) => {
-            // console.log(e.target.value);
+            //
+            e.target.value;
             setUserInput(e.target.value);
           }}
         />

@@ -33,7 +33,8 @@ export default function RestProfile() {
 
           {Array.isArray(restMenuList) && restMenuList.length > 0
             ? restMenuList.map((item, index) => {
-                // console.log(index);
+                //
+                index;
                 return index <= loadMenu ? (
                   <MenuItem key={item.id * Math.random()} item={item} />
                 ) : null;

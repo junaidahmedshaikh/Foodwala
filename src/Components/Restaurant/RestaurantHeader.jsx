@@ -3,9 +3,9 @@ import { useState } from "react";
 import RestHeaderSkeleton from "../../Shimmer/RestProfileSkeleton/RestHeaderSkeleton";
 import { IMG_CDN_URL } from "../../constant";
 export default function RestaurantHeader(restInfoProp) {
-  // console.log(restInfoProp);
+  //
+  restInfoProp;
   const [restInfo, setRestInfo] = useState(restInfoProp);
-  // console.log();
 
   return Object.keys(restInfoProp).length === 0 ? (
     <RestHeaderSkeleton />

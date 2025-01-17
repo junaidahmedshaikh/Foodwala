@@ -16,7 +16,8 @@
 //     //   })
 //     //   .map((item) => item?.item?.price)
 //     //   .reduce((sum, item) => {
-//     //     // console.log("total function: ", item);
+//     //     //
+"total function: ", item;
 //     //     return sum + (item || 0);
 //     //     // Ensure null/undefined prices are treated as 0
 //   //     }, 0);

@@ -3,8 +3,6 @@ import React from "react";
 export default function PersonalInfo() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // setFormData({ ...formData, [name]: value });
-    console.log(name, value);
   };
   return (
     <>
